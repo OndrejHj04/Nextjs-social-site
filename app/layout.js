@@ -20,16 +20,22 @@ const RootLayout = ({ children }) => {
         <h1 className="text-3xl font-semibold mt-16 ml-8 mb-8">
           A home for all of our [num] clients
         </h1>
-        <nav className="flex gap-5 ml-8">
-          {navigation.map(({ name, slug }) => (
-            <Link
-              key={name}
-              href={slug}
-              className={`${url === slug && "border-b-4 border-orange-400"}`}
-            >
-              {name}
-            </Link>
-          ))}
+        <nav className="shadow-xl">
+          <div className="flex gap-5 ml-8">
+            {navigation.map(({ name, slug }) => (
+              <Link
+                key={name}
+                href={slug}
+                className={`${
+                  url === slug && "border-b-4 border-orange-400"
+                } text-xl`}
+              >
+                {name}
+              </Link>
+            ))}
+          </div>
+
+          <div className="bg-gray-200 h-0.5 mt-5 " />
         </nav>
 
         <div className="ml-8 mt-8">{children}</div>

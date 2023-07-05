@@ -14,7 +14,7 @@ const CreateUser = () => {
       user[id] = e.target[id].value;
     });
 
-    fetch("/api/users/new", {
+    fetch("/api/users/create", {
       method: "POST",
       body: JSON.stringify(user),
     })

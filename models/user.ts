@@ -1,6 +1,11 @@
 import { Schema, model, models } from "mongoose";
 
-const userSchema = new Schema({
+export type IUser = {
+  name: String;
+  job: String;
+};
+
+const userSchema = new Schema<IUser>({
   name: {
     type: String,
   },

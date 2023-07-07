@@ -1,5 +1,5 @@
-import User from "@/models/user";
-import { connectToDB } from "@/utils/database";
+import User from "../../../../../models/user";
+import { connectToDB } from "../../../../../utils/database";
 
 export const POST = async (req, { params }) => {
   const { id } = params;

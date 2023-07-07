@@ -2,20 +2,25 @@
 import Link from "next/link";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { Inputs } from "../types/types";
 
 const form = [
   { title: "Jméno", type: "text", id: "name" },
   { title: "Zaměstnání", type: "text", id: "job" },
 ];
-const Form = ({ data }) => {
+
+const Form = ({ data }: { data?: Inputs }) => {
   const pathname = usePathname();
   const { id } = useParams();
   const router = useRouter();
   const create = pathname === "/create-user" ? true : false;
-  const [inputs, setInputs] = useState({ name: "", job: "" });
+  const [inputs, setInputs] = useState<Inputs>({
+    name: "",
+    job: "",
+  });
 
   const emptyForm = () => {
-    const structure = {};
+    const structure: Inputs = {};
     form.forEach(({ id }) => {
       structure[id] = "";
     });
@@ -28,7 +33,7 @@ const Form = ({ data }) => {
     }
   }, [data]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const user = {};
     form.forEach(({ id }) => {

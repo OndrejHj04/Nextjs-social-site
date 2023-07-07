@@ -1,13 +1,13 @@
 "use client";
 
-import DeletePopup from "@/components/Delete";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import DeletePopup from "../components/Delete";
+import { UserDB } from "../types/types";
 
-const Home = ({ searchParams }) => {
-  const [users, setUsers] = useState([]);
-  const [makeDelete, setMakeDelete] = useState();
-
+const Home = () => {
+  const [users, setUsers] = useState<UserDB[]>([]);
+  const [makeDelete, setMakeDelete] = useState<UserDB>(null);
   useEffect(() => {
     const getUsers = async () => {
       const response = await fetch("/api/users/get");
@@ -19,15 +19,16 @@ const Home = ({ searchParams }) => {
       getUsers();
     }
   }, [makeDelete]);
+
   return (
     <>
       {makeDelete && (
         <DeletePopup makeDelete={makeDelete} setMakeDelete={setMakeDelete} />
       )}
       <div className="grid-cols-3 grid justify-items-center max-w-5xl">
-        {users.map(({ name, job, _id }) => (
+        {users.map(({ name, job, _id }, i) => (
           <div
-            key={_id}
+            key={i}
             className="w-full max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-3"
           >
             <div className="flex flex-col items-center pb-10 mt-3">
@@ -50,7 +51,7 @@ const Home = ({ searchParams }) => {
                   Edit
                 </Link>
                 <button
-                  onClick={() => setMakeDelete({ name, job, id: _id })}
+                  onClick={() => setMakeDelete({ name, job, _id: _id })}
                   className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                 >
                   Delete

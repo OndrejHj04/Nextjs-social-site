@@ -1,10 +1,12 @@
 "use client";
-import Form from "@/components/Form";
+
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import Form from "../../../components/Form";
+import { Inputs } from "../../../types/types";
 
 const EditUserDetail = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState<Inputs>();
   const { id } = useParams();
 
   useEffect(() => {
@@ -13,7 +15,7 @@ const EditUserDetail = () => {
       .then((data) => setData({ name: data.name, job: data.job }));
   }, []);
 
-  return <Form data={data}/>;
+  return <Form data={data} />;
 };
 
 export default EditUserDetail;

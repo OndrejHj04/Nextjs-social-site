@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navigation = [
-  { name: "Dashboard", slug: "/" },
   { name: "Create user", slug: "/create-user" },
   { name: "Edit user", slug: "/edit-user" },
   { name: "History", slug: "/history" },
@@ -23,7 +22,7 @@ const RootLayout = ({ children }) => {
     };
     getUsers();
   }, []);
-
+  console.log(url);
   return (
     <html>
       <body>
@@ -32,12 +31,20 @@ const RootLayout = ({ children }) => {
         </h1>
         <nav className="shadow-xl">
           <div className="flex gap-5 ml-8">
+            <Link
+              href={"/"}
+              className={`${
+                url === "/" && "border-b-4 border-orange-400"
+              } text-xl`}
+            >
+              Dashboard
+            </Link>
             {navigation.map(({ name, slug }) => (
               <Link
                 key={name}
                 href={slug}
                 className={`${
-                  url === slug && "border-b-4 border-orange-400"
+                  url.includes(slug) && "border-b-4 border-orange-400"
                 } text-xl`}
               >
                 {name}

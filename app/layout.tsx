@@ -1,8 +1,11 @@
 import "./globals.css";
+import { Providers } from "./redux/provider";
 const RootLayout = ({ children }) => {
   return (
     <html>
-      <body>{children}</body>
+      <body>
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 };

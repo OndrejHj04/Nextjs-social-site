@@ -12,7 +12,5 @@ export const connectToDB = async () => {
         useUnifiedTopology: true,
       }
     );
-  } catch (e) {
-    console.log(e);
-  }
+  } catch (e) {}
 };

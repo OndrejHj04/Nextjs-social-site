@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Inputs } from "../types/types";
+import { createUser, editUser } from "../services/users";
 
 const form = [
   { title: "Jméno", type: "text", id: "name" },
@@ -39,18 +40,7 @@ const Form = ({ data }: { data?: Inputs }) => {
     form.forEach(({ id }) => {
       user[id] = e.target[id].value;
     });
-
-    fetch(create ? "/api/users/create" : `/api/user/${id}/edit`, {
-      method: "POST",
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((e) => console.log("neco se nepovedlo"))
-      .finally(() => {
-        emptyForm();
-        router.push("/");
-      });
+    create ? createUser(user) : editUser(user, id);
   };
 
   return (

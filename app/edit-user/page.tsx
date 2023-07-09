@@ -1,22 +1,15 @@
 "use client";
-import React, { FormEventHandler } from "react";
-import Form from "../../components/Form";
-import { useState, useEffect } from "react";
-import { Inputs, UserDB } from "../../types/types";
-import Select from "react-select";
-import { OptionsOrGroups, GroupBase } from "react-select/dist/declarations/src";
+import React, { use } from "react";
+import { useState } from "react";
+import { UserDB } from "../../types/types";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-const EditUser = ({ searchParams }) => {
+import { getUsers } from "../../services/users";
+
+const EditUser = () => {
   const router = useRouter();
   const [user, setUser] = useState("");
-  const [allUsers, setAllUsers] = useState<UserDB[]>([]);
-
-  useEffect(() => {
-    fetch("api/users/get")
-      .then((res) => res.json())
-      .then((data) => setAllUsers(data));
-  }, []);
+  const allUsers: UserDB[] = use(getUsers());
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,8 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { use } from "react";
 import "./globals.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { getUsers } from "../services/users";
+import { UserDB } from "../types/types";
 
 const navigation = [
   { name: "Create user", slug: "/create-user" },
@@ -12,22 +14,13 @@ const navigation = [
 
 const RootLayout = ({ children }) => {
   const url = usePathname();
-  const [count, setCount] = useState(null);
+  const users: UserDB[] = use(getUsers());
 
-  useEffect(() => {
-    const getUsers = async () => {
-      const response = await fetch("/api/users/get");
-      const data = await response.json();
-      setCount(data.length);
-    };
-    getUsers();
-  }, []);
-  console.log(url);
   return (
     <html>
       <body>
         <h1 className="text-3xl font-semibold mt-16 ml-8 mb-8">
-          A home for all of our {count} clients
+          A home for all of our {users.length} clients
         </h1>
         <nav className="shadow-xl">
           <div className="flex gap-5 ml-8">

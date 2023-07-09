@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { UserDB } from "../types/types";
 import { Schema } from "mongoose";
+import { deleteUser } from "../services/users";
 
 const DeletePopup = ({
   makeDelete,
@@ -9,15 +10,7 @@ const DeletePopup = ({
   makeDelete: UserDB;
   setMakeDelete: Dispatch<SetStateAction<UserDB>>;
 }) => {
-  const handleDeleteUser = (id: Schema.Types.ObjectId) => {
-    fetch(`api/user/${id}/delete`, {
-      method: "POST",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setMakeDelete(null);
-      });
-  };
+
 
   return (
     <div
@@ -66,7 +59,7 @@ const DeletePopup = ({
             </div>
             <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
               <button
-                onClick={() => handleDeleteUser(makeDelete._id)}
+                onClick={() => deleteUser(makeDelete._id.toString())}
                 type="button"
                 className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
               >

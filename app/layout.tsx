@@ -1,16 +1,14 @@
 import React from "react";
 import "./globals.css";
 import { Providers } from "./redux/provider";
-const RootLayout = ({ children }) => {
+import AuthProvider from "./auth/auth-provider";
+const RootLayout = ({ children }: { children: any }) => {
   return (
     <html>
       <body>
-        <Providers>{children}</Providers>
-        <p>
-          <div>
-            adfas<h1>asdfas</h1>
-          </div>
-        </p>
+        <AuthProvider>
+          <Providers>{children}</Providers>
+        </AuthProvider>
       </body>
     </html>
   );

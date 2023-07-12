@@ -3,6 +3,9 @@ import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const options: NextAuthOptions = {
+  pages: {
+    signIn: "/auth/singin",
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -31,7 +34,7 @@ export const options: NextAuthOptions = {
           credentials?.username === user.name &&
           credentials?.password === user.password
         ) {
-          return user;
+          return user as any;
         } else {
           return null;
         }

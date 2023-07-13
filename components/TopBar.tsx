@@ -1,31 +1,14 @@
-"use client";
-import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import React from "react";
-
+import LoginButtons from "./LoginButtons";
 const TopBar = () => {
-  const { data: session, status } = useSession();
-  console.log(session, status === "authenticated");
-
-  if (status === "loading") {
-    return <div>loading</div>;
-  }
-
-  if (status === "authenticated") {
-    return (
-      <div>
-        <button onClick={() => signOut()}>SIGN OUT</button>
-        <h1>{session.user.name}</h1>
+  return (
+    <>
+      <div className="flex justify-between px-10 py-3 shadow-2xl">
+        <div>Houska</div>
+        <LoginButtons />
       </div>
-    );
-  }
-
-  if (status === "unauthenticated") {
-    return (
-      <div>
-        <button onClick={() => signIn()}>SIGN IN</button>
-      </div>
-    );
-  }
+      <div className="bg-gray-400 h-0.5"/>
+    </>
+  );
 };
-
 export default TopBar;

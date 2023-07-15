@@ -1,13 +1,21 @@
 import React from "react";
 import LoginButtons from "./LoginButtons";
+import Logo from "./Logo";
 const TopBar = () => {
   return (
     <>
-      <div className="flex justify-between px-10 py-3 shadow-2xl">
-        <div>Houska</div>
-        <LoginButtons />
+      <div className="px-10 py-4 shadow-2xl">
+        <div className="relative flex justify-end">
+          <div className="absolute left-0">
+            <Logo />
+          </div>
+
+          <div>
+            <LoginButtons />
+          </div>
+        </div>
       </div>
-      <div className="bg-gray-400 h-0.5"/>
+      <div className="h-0.5 bg-gray-400" />
     </>
   );
 };

@@ -9,12 +9,7 @@ const RootLayout = ({ children }: { children: any }) => {
     <html>
       <body>
         <AuthProvider>
-          <Providers>
-            <ComponentsWrapper>
-              <TopBar />
-            </ComponentsWrapper>
-            {children}
-          </Providers>
+          <Providers>{children}</Providers>
         </AuthProvider>
       </body>
     </html>

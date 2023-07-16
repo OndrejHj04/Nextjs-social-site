@@ -1,14 +1,12 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
 import React from "react";
-import StyledButton from "../styled-components/Button/StyledButton";
-import { openModal } from "../app/redux/features/topBar/topBarSlice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
+import Button from "@mui/material/Button";
 
 const LoginButtons = () => {
   const { data: session, status } = useSession();
-  const dispatch = useDispatch();
   const router = useRouter();
   if (status === "loading") {
     return <div>loading</div>;
@@ -17,12 +15,12 @@ const LoginButtons = () => {
   if (status === "authenticated") {
     return (
       <div>
-        <StyledButton type="default" handle={() => ({})} gap="right">
+        <Button variant="contained" onClick={() => ({})}>
           <span>{session.user.name}</span>
-        </StyledButton>
-        <StyledButton type="alert" handle={() => signOut()}>
+        </Button>
+        <Button variant="contained" onClick={() => signOut()}>
           <span>Odhlásit se</span>
-        </StyledButton>
+        </Button>
       </div>
     );
   }
@@ -30,9 +28,12 @@ const LoginButtons = () => {
   if (status === "unauthenticated") {
     return (
       <div>
-        <StyledButton type="default" handle={() => router.push("/registration")}>
-          <span>Zaregistrovat se</span>
-        </StyledButton>
+        <Button
+          variant="contained"
+          onClick={() => router.push("/registration")}
+        >
+          Zaregistrovat se
+        </Button>
       </div>
     );
   }

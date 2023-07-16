@@ -1,7 +1,7 @@
 "use client";
 import { getProviders, signIn } from "next-auth/react";
 import React from "react";
-import StyledButton from "../styled-components/Button/StyledButton";
+import { Button } from "@mui/material";
 
 const SingIn = async () => {
   const providers = await getProviders();
@@ -11,12 +11,12 @@ const SingIn = async () => {
       <div className="flex flex-col gap-5">
         {Object.values(providers).map((provider) => (
           <div key={provider.id}>
-            <StyledButton
-              type="default"
-              handle={() => signIn(provider.id, { callbackUrl: "/" })}
+            <Button
+              variant="contained"
+              onClick={() => signIn(provider.id, { callbackUrl: "/" })}
             >
               <span>SIGN IN WITH {provider.name}</span>
-            </StyledButton>
+            </Button>
           </div>
         ))}
       </div>

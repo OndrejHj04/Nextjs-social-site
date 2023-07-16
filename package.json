@@ -9,7 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@fightmegg/riot-api": "^0.0.15",
+    "@mui/material": "^5.14.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/react-dom": "^18.2.6",
     "autoprefixer": "10.4.14",

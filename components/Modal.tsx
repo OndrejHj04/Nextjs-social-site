@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../app/redux/features/topBar/topBarSlice";
 import { IoMdClose } from "react-icons/io";
-import StyledInput from "../styled-components/Input/StyledInput";
 
 const Modal = () => {
   const dispatch = useDispatch();

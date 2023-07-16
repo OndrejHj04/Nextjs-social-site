@@ -12,10 +12,15 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fightmegg/riot-api": "^0.0.15",
+    "@hookform/error-message": "^2.0.1",
+    "@hookform/resolvers": "^3.1.1",
     "@mui/material": "^5.14.0",
+    "@mui/x-date-pickers": "^6.10.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/react-dom": "^18.2.6",
     "autoprefixer": "10.4.14",
+    "js": "^0.1.0",
+    "moment": "^2.29.4",
     "mongoose": "^7.3.1",
     "next": "^13.4.8",
     "next-auth": "^4.22.1",
@@ -27,7 +32,8 @@
     "react-loading-skeleton": "^3.3.1",
     "react-redux": "^8.1.1",
     "react-select": "^5.7.3",
-    "tailwindcss": "3.3.2"
+    "tailwindcss": "3.3.2",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",

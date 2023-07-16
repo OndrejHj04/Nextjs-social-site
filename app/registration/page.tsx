@@ -10,6 +10,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import moment from "moment";
 import * as yup from "yup";
+type form = {
+  username: string;
+  email: string;
+  date: string;
+  password: string;
+};
 
 const schema = yup.object().shape({
   username: yup
@@ -34,7 +40,7 @@ const Page = () => {
     handleSubmit,
 
     formState: { errors },
-  } = useForm({
+  } = useForm<form>({
     resolver: yupResolver(schema),
   });
   moment.updateLocale("en", {
@@ -42,7 +48,7 @@ const Page = () => {
       dow: 1,
     },
   });
-  const onSubmit = (data) => {
+  const onSubmit = (data: form) => {
     console.log(data);
   };
   return (

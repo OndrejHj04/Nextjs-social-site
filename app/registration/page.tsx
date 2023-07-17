@@ -11,6 +11,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import moment from "moment";
 import * as yup from "yup";
 import { getProviders, signIn } from "next-auth/react";
+import { useDispatch } from "react-redux";
+import { open } from "../redux/features/banner/bannerSlice";
+import { useRouter } from "next/navigation";
 type form = {
   username: string;
   email: string;
@@ -34,6 +37,8 @@ const schema = yup.object().shape({
 });
 
 const Page = () => {
+  const dispatch = useDispatch();
+  const navigation = useRouter();
   const {
     register,
     setValue,
@@ -51,7 +56,16 @@ const Page = () => {
   const onSubmit = (data: form) => {
     signIn("credentials", {
       ...data,
+      redirect: false,
       callbackUrl: `${window.location.origin}/`,
+    }).then((res) => {
+      if (res.error) {
+        dispatch(
+          open({ type: "alert", text: "Pod tímto emailem už existuje účet!" })
+        );
+      } else {
+        navigation.push("/dashboard");
+      }
     });
   };
   return (

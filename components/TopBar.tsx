@@ -2,10 +2,13 @@ import React from "react";
 import LoginButtons from "./LoginButtons";
 import Logo from "./Logo";
 import Modal from "./Modal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../app/redux/store";
+import { Button } from "@mui/material";
+import { open } from "../app/redux/features/banner/bannerSlice";
 const TopBar = () => {
   const modal = useSelector((state: RootState) => state.topBar.modal);
+  const dispatch = useDispatch()
   return (
     <>
       <div className="mb-10">
@@ -14,7 +17,7 @@ const TopBar = () => {
             <div className="absolute left-0">
               <Logo />
             </div>
-
+            <Button onClick={()=>dispatch(open({text: "ahoj", type: "alert"}))}>click</Button>
             <div>
               <LoginButtons />
             </div>

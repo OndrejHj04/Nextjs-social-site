@@ -2,18 +2,16 @@ import React from "react";
 import "./globals.css";
 import { Providers } from "../providers/provider";
 import AuthProvider from "../providers/auth-provider";
-import TopBar from "../components/TopBar";
-import ComponentsWrapper from "../providers/ComponentsWrapper";
+
 import { StyledEngineProvider } from "@mui/material";
+import TopBar from "../components/TopBar";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 const RootLayout = ({ children }: { children: any }) => {
   return (
     <html>
       <body id="root">
-        <StyledEngineProvider injectFirst>
-          <AuthProvider>
-            <Providers>{children}</Providers>
-          </AuthProvider>
-        </StyledEngineProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

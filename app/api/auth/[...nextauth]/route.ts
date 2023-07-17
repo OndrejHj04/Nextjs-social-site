@@ -4,6 +4,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 import { connectToDB } from "../../../../utils/database";
 import User from "../../../../schema/user";
+import { useDispatch } from "react-redux";
+import { open } from "../../../redux/features/banner/bannerSlice";
 
 export const handler = NextAuth({
   pages: {

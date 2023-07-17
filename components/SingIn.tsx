@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 
 const SingIn = async () => {
   const providers = await getProviders();
-  console.log(providers);
+
   return (
     <div className="w-fit m-5">
       <div className="flex flex-col gap-5">

@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 
 const LoginButtons = () => {
   const { data: session, status } = useSession();
+  console.log(session)
   const router = useRouter();
   if (status === "loading") {
     return <div>loading</div>;

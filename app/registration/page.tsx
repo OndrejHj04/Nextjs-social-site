@@ -10,27 +10,27 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import moment from "moment";
 import * as yup from "yup";
+import { getProviders, signIn } from "next-auth/react";
 type form = {
   username: string;
   email: string;
   date: string;
   password: string;
 };
-
 const schema = yup.object().shape({
-  username: yup
-    .string()
-    .required("Je potřeba vyplnit uživatelské jméno")
-    .min(5, "Jméno musí mít nejméně 5 znaků"),
-  email: yup
-    .string()
-    .email("Je potřeba zadat platný email")
-    .required("Je potřeba zadat platný email"),
-  date: yup.string().required("Je potřeba zadat platné datum"),
-  password: yup
-    .string()
-    .required("Je potřeba zadat heslo")
-    .min(8, "Heslo musí mít nejméně 8 znaků"),
+    username: yup
+      .string()
+      .required("Je potřeba vyplnit uživatelské jméno")
+      .min(5, "Jméno musí mít nejméně 5 znaků"),
+    email: yup
+      .string()
+      .email("Je potřeba zadat platný email")
+      .required("Je potřeba zadat platný email"),
+    date: yup.string().required("Je potřeba zadat platné datum"),
+    password: yup
+      .string()
+      .required("Je potřeba zadat heslo")
+      .min(8, "Heslo musí mít nejméně 8 znaků"),
 });
 
 const Page = () => {
@@ -49,7 +49,7 @@ const Page = () => {
     },
   });
   const onSubmit = (data: form) => {
-    console.log(data);
+    signIn("credentials", { ...data });
   };
   return (
     <div className="max-w-3xl mx-auto">

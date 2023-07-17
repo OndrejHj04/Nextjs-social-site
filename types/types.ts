@@ -7,3 +7,10 @@ export type UserDB = {
 };
 
 export type Inputs = { name: String; job: String } | {};
+
+export type loginForm = {
+  username: string;
+  email: string;
+  date: string;
+  password: string;
+};

@@ -21,7 +21,9 @@ export const handler = NextAuth({
           const userExists = await User.findOne({
             email,
           });
-
+          if (userExists) {
+            return null;
+          }
           if (!userExists) {
             await User.create({
               email,

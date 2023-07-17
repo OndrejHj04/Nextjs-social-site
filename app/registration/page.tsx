@@ -18,19 +18,19 @@ type form = {
   password: string;
 };
 const schema = yup.object().shape({
-    username: yup
-      .string()
-      .required("Je potřeba vyplnit uživatelské jméno")
-      .min(5, "Jméno musí mít nejméně 5 znaků"),
-    email: yup
-      .string()
-      .email("Je potřeba zadat platný email")
-      .required("Je potřeba zadat platný email"),
-    date: yup.string().required("Je potřeba zadat platné datum"),
-    password: yup
-      .string()
-      .required("Je potřeba zadat heslo")
-      .min(8, "Heslo musí mít nejméně 8 znaků"),
+  username: yup
+    .string()
+    .required("Je potřeba vyplnit uživatelské jméno")
+    .min(5, "Jméno musí mít nejméně 5 znaků"),
+  email: yup
+    .string()
+    .email("Je potřeba zadat platný email")
+    .required("Je potřeba zadat platný email"),
+  date: yup.string().required("Je potřeba zadat platné datum"),
+  password: yup
+    .string()
+    .required("Je potřeba zadat heslo")
+    .min(8, "Heslo musí mít nejméně 8 znaků"),
 });
 
 const Page = () => {
@@ -49,7 +49,10 @@ const Page = () => {
     },
   });
   const onSubmit = (data: form) => {
-    signIn("credentials", { ...data });
+    signIn("credentials", {
+      ...data,
+      callbackUrl: `${window.location.origin}/`,
+    });
   };
   return (
     <div className="max-w-3xl mx-auto">

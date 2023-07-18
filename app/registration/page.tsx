@@ -56,6 +56,7 @@ const Page = () => {
   const onSubmit = (data: form) => {
     signIn("credentials", {
       ...data,
+      action: "register",
       redirect: false,
       callbackUrl: `${window.location.origin}/`,
     }).then((res) => {

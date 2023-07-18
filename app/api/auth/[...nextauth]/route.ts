@@ -15,29 +15,23 @@ export const handler = NextAuth({
     CredentialsProvider({
       name: "Credentials",
       async authorize(credentials, req) {
-        const { username, email, password, date } = credentials;
-        const user = { name: username };
+        const { action } = req.body;
 
-        try {
+        if (action === "login") {
+          const { username, password } = credentials;
           await connectToDB();
           const userExists = await User.findOne({
-            email,
+            username,
+            password,
           });
           if (userExists) {
-            return null;
+            return { name: username };
           }
-          if (!userExists) {
-            await User.create({
-              email,
-              username,
-              password,
-              date,
-            });
-          }
-          return user;
-        } catch (e) {
-          console.log(e);
           return null;
+        }
+
+        if (action === "register") {
+          const { username, email, password, date } = credentials;
         }
       },
     }),

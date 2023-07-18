@@ -3,15 +3,32 @@ import React from "react";
 import { Button, TextField, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
+import { useDispatch } from "react-redux";
+import { open } from "../redux/features/banner/bannerSlice";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const dispatch = useDispatch();
+  const navigation = useRouter();
   const { handleSubmit, register } = useForm();
   const onSubmit = (data) => {
     signIn("credentials", {
       ...data,
+      action: "login",
       redirect: false,
       callbackUrl: `${window.location.origin}/`,
-    }).then((res) => console.log(res));
+    }).then((res) => {
+      if (res.error) {
+        dispatch(
+          open({
+            type: "alert",
+            text: "Uživatelské jméno nebo heslo nejsou správné!",
+          })
+        );
+      } else {
+        navigation.push("/dashboard");
+      }
+    });
   };
 
   return (
@@ -35,6 +52,7 @@ const Page = () => {
             <TextField
               id="outlined-basic"
               label="Heslo"
+              type="password"
               variant="outlined"
               className="w-3/5"
               {...register("password")}

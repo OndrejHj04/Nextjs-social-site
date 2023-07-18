@@ -61,10 +61,11 @@ const Page = () => {
       callbackUrl: `${window.location.origin}/`,
     }).then((res) => {
       if (res.error) {
+        console.log(res);
         dispatch(
           open({
             type: "alert",
-            text: "Účet s tímto uživatelským jménem už existuje",
+            text: "Účet s tímto uživatelským jménem nebo emailem už existuje",
           })
         );
       } else {

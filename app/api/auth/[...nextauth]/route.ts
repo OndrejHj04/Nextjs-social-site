@@ -19,19 +19,39 @@ export const handler = NextAuth({
 
         if (action === "login") {
           const { username, password } = credentials;
-          await connectToDB();
-          const userExists = await User.findOne({
-            username,
-            password,
-          });
-          if (userExists) {
-            return { name: username };
+          try {
+            await connectToDB();
+            const userExists = await User.findOne({
+              username,
+              password,
+            });
+            if (userExists) {
+              return { name: username };
+            }
+            return null;
+          } catch (e) {
+            console.log(e);
           }
-          return null;
         }
 
         if (action === "register") {
           const { username, email, password, date } = credentials;
+          try {
+            await connectToDB();
+            const user = await User.findOne({
+              $or: [{ username }, { email }],
+            });
+            console.log(user.email);
+            if (!user) {
+              User.create({ username, email, password, date });
+              return { name: username };
+            }
+
+            throw null
+
+          } catch (e) {
+            console.log(e);
+          }
         }
       },
     }),

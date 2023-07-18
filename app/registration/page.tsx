@@ -61,7 +61,10 @@ const Page = () => {
     }).then((res) => {
       if (res.error) {
         dispatch(
-          open({ type: "alert", text: "Pod tímto emailem už existuje účet!" })
+          open({
+            type: "alert",
+            text: "Účet s tímto uživatelským jménem už existuje",
+          })
         );
       } else {
         navigation.push("/dashboard");
@@ -153,6 +156,15 @@ const Page = () => {
         </div>
         <Button variant="contained" className="mt-2" type="submit">
           Registrovat
+        </Button>
+
+        <Button
+          variant="contained"
+          className="mt-2"
+          type="button"
+          onClick={() => navigation.push("/login")}
+        >
+          Přihlásit se
         </Button>
       </form>
     </div>
